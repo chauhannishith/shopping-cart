@@ -1,0 +1,33 @@
+<<<<<<< HEAD
+extends ../layout
+
+block content
+  div.mybox
+    h2 New user?
+      a(onclick="transfer()", name="signup") SignUp
+    form(action="/users/signin", method="POST", class="myform")
+      label E-mail/Username
+      input(type="text", name="username")
+      label Password
+      input(type="password", name="password")
+      input(type="submit", name="submit")
+=======
+doctype html
+html
+  head
+    title signin
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/srcipt.js')
+  body
+  h2 SignIn
+    form(action="/", method="get", class="myform")
+      label user name
+      input(type="text", name="uname")
+      br
+      label password
+      input(type="password", name="password")
+      br
+      input(type="submit", name="submit")
+      div.separate
+        button(onclick="transfer()", name="signup") SignUp
+>>>>>>> Initial commit
