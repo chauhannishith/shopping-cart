@@ -10,16 +10,6 @@ h1{
 	padding: 10px;
 }
 
-<<<<<<< HEAD
-=======
-.pinktext{
-	font-size: 15px;
-	background-color: rgb(255,135,195);
-	margin: -20px 0px;
-	padding: 10px 10px 10px 10px;
-}
->>>>>>> Initial commit
-
 label{
 	display: block;
 	font-weight: bold;
@@ -53,7 +43,7 @@ li.dropdown {
     display: inline-block;
 }
 
-<<<<<<< HEAD
+
 .mybox a{
 	text-decoration: underline;
 }
@@ -70,8 +60,6 @@ li.dropdown {
 	padding: 10px 10px 10px 10px;
 }
 
-=======
->>>>>>> Initial commit
 .dropdown-content {
     display: none;
     position: absolute;
@@ -98,7 +86,6 @@ li.dropdown {
 	float: right;
 }
 
-<<<<<<< HEAD
 
 .mybox{
 	width: 30%;
@@ -119,16 +106,7 @@ li.dropdown {
 
 .mybox h2{
 	text-align: center;
-=======
-.myform{
-	padding: 15px;
-	border: solid 1px;
-}
 
-.myform label input{
-	padding-bottom: 10px;
-	display: block;
->>>>>>> Initial commit
 }
 
 .a-row-width{
@@ -150,18 +128,11 @@ li.dropdown {
 }
 
 .col-1{
-<<<<<<< HEAD
 	width:25%;
 	padding: 20px;
 	display: inline-block;
 	margin: auto;
 	box-sizing: border-box;
-=======
-	width:20%;
-	padding: 20px;
-	display: inline-block;
-	margin: 10px;
->>>>>>> Initial commit
 }
 
 .thumbnail{
@@ -169,7 +140,7 @@ li.dropdown {
 	border: solid 2px;
 	width: 100%;
 	display: block;
-<<<<<<< HEAD
+
 	margin: 0px;
 }
 .thumbnail img{
@@ -181,21 +152,7 @@ li.dropdown {
 .thumbnail .caption{
 	text-align: justify;
 	padding-left: 15px;
-=======
-	padding: 15px;
-	margin: 5px;
-}
-.thumbnail img{
-	margin-left: 20px;
-	margin-right: auto;
-	max-height: 200px;
-	max-width: 270px;
 
-}
-
-.caption{
-	text-align: justify;
->>>>>>> Initial commit
 }
 
 .cost{
@@ -204,36 +161,26 @@ li.dropdown {
 	padding: 7px;
 	color: rgb(195,1,1);
 }
-<<<<<<< HEAD
+
 .thumbnail button{
 	float: right;
 	background-color: #f0c14b;
 	border-radius: 5px;
 	padding: 15px;
 	margin-right: 15px;
-=======
-.add-cart{
-	float: right;
-	background-color: #f0c14b;
-	border-radius: 5px;
-	padding: 7px;
->>>>>>> Initial commit
 }
 
 .home{
 	width:100%;
 }
 
-<<<<<<< HEAD
+
 .divide-2{
-=======
-.home-divide{
->>>>>>> Initial commit
 	width:50%;
 	display: inline-block;
 }
 
-<<<<<<< HEAD
+
 .divide-2 img{
 	width: 100%;
 }
@@ -256,10 +203,4 @@ li.dropdown {
 
 .faq h4{
 	font-style: italic;
-
-=======
-.home-divide img{
-	width: 90%;
-	margin: 10px;
->>>>>>> Initial commit
 }

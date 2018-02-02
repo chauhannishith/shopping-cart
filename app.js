@@ -5,16 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-<<<<<<< HEAD
+
 var config = require('./config/database');
 var passport = require('passport');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
-=======
 
-
->>>>>>> Initial commit
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -31,7 +28,6 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-<<<<<<< HEAD
 
 
 app.use(cookieParser());
@@ -73,10 +69,8 @@ app.get('*', function(req, res, next) {
 	res.locals.user = req.user || null;
 	next();
 });
-=======
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
->>>>>>> Initial commit
 
 app.use('/users', users);
 app.use('/', index);

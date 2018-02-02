@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< HEAD
 var Product = require('../models/product');
-=======
-var Product = require('../data/product');
->>>>>>> Initial commit
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

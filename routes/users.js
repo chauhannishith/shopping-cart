@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< HEAD
+
 var User = require('../models/userdata');
 var bcrypt = require('bcryptjs');
 var passport = require('passport');
@@ -46,8 +46,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //
-=======
->>>>>>> Initial commit
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -55,17 +53,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/signup', function(req, res, next) {
-<<<<<<< HEAD
-
-=======
->>>>>>> Initial commit
   res.render('user/signup');
 });
 
 router.get('/signin', function(req, res, next) {
   res.render('user/signin');
 });
-<<<<<<< HEAD
 
 router.post('/signin', function(req, res, next) {
   req.checkBody('username','Email is required').notEmpty();
@@ -142,6 +135,4 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/users/signin');
 });
 
-=======
->>>>>>> Initial commit
 module.exports = router;
