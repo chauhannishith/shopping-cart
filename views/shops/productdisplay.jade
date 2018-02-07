@@ -1,12 +1,8 @@
-each product in products
-  div.col-1
-    div.thumbnail
-      img(src="#{product.image}")
-      div.caption
-        h2 #{product.title}
-        p #{product.description}
-        div.home
-          div.divide-2
-            label(name="price", class="cost") $ #{product.price}
-          div.divide-2
-            button(name="add") Add to basket
+div.catalogue-container
+  each product in products
+    div.single-product
+      img(src="#{product.image}" alt="image.jpg")
+      div
+        div.price
+          label $ #{product.price}
+        button(name="add" class="btn-add") Add to basket

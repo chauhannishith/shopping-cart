@@ -1,7 +1,20 @@
+/*VARIABLES*/
+
+:root {
+/*	--border: xxxx;*/
+	--shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}/*
+abcd: var(--shadow);
+*/
+
+html{
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, "sans-serif";
+}
+
 body {
  /* padding: 50px;*/
  margin: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 h1{
@@ -15,6 +28,16 @@ label{
 	font-weight: bold;
 }
 
+ul{
+	list-style-type: none;
+
+}
+
+li {
+	display: inline-block;
+}
+/*OLD PERFECTLY WORKING NAVBAR*/
+/*
 ul {
     list-style-type: none;
     margin: 0;
@@ -43,23 +66,6 @@ li.dropdown {
     display: inline-block;
 }
 
-
-.mybox a{
-	text-decoration: underline;
-}
-
-.mybox a:hover{
-	color: gray;
-	text-decoration: underline;
-}
-
-.pinktext{
-	font-size: 15px;
-	background-color: rgb(255,135,195);
-	margin: -20px 0px;
-	padding: 10px 10px 10px 10px;
-}
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -85,13 +91,34 @@ li.dropdown {
 .right{
 	float: right;
 }
-
+*/
+/*=================*/
 
 .mybox{
 	width: 30%;
 	margin: 20px auto;
 	border: solid 1px;
 	border-radius: 7px;
+}
+.mybox h2{
+	text-align: center;
+
+}
+
+.mybox a{
+	text-decoration: underline;
+}
+
+.mybox a:hover{
+	color: gray;
+	text-decoration: underline;
+}
+
+.pinktext{
+	font-size: 15px;
+	background-color: rgb(255,135,195);
+	margin: -20px 0px;
+	padding: 10px 10px 10px 10px;
 }
 
 .myform{
@@ -104,10 +131,7 @@ li.dropdown {
 	padding-bottom: 15px;
 }
 
-.mybox h2{
-	text-align: center;
 
-}
 
 .a-row-width{
 	width: 100%;
@@ -126,7 +150,7 @@ li.dropdown {
 	height: 25%;
 	display: block;
 }
-
+/*
 .col-1{
 	width:25%;
 	padding: 20px;
@@ -153,38 +177,85 @@ li.dropdown {
 	text-align: justify;
 	padding-left: 15px;
 
-}
-
+}*/
+/*
 .cost{
 	font-size: 20px;
 	font-weight: bold;
 	padding: 7px;
 	color: rgb(195,1,1);
-}
-
+	text-align: center;
+}*/
+/*
 .thumbnail button{
 	float: right;
 	background-color: #f0c14b;
 	border-radius: 5px;
 	padding: 15px;
 	margin-right: 15px;
+}*/
+/*New for shop page*/
+.catalogue-container{
+	display: grid;
+	grid-template-columns: repeat(4,1fr);
+	grid-gap: 1rem;
+	padding: 1rem;
 }
-
+/*New for shop page single product outline*/
+.catalogue-container .single-product {
+	display: grid;
+	grid-template-rows: 4fr 1fr;
+	grid-gap: 0.3rem;
+	border: 1px solid black;
+	border-radius: 3px;
+	margin: auto;
+	padding: 0.6rem;
+	box-shadow: var(--shadow);
+}
+/*New for shop page single product adjustment*/
+.catalogue-container .single-product > div {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
+.catalogue-container .single-product > img{
+	max-width: 100%;
+	margin: auto;
+}
+.catalogue-container .single-product >div .price {
+	font-size: 30px;
+	font-weight: bold;
+	padding: 7px;
+	color: rgb(195,1,1);
+	text-align: center;
+	margin: auto;
+}
+.catalogue-container .single-product .btn-add{
+	display: block;
+	text-align: center;
+	background-color: #f0c14b;
+	border-radius: 5px;
+	font-size: 20px;
+}
+/*New for home page*/
 .home{
-	width:100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1rem;
+}
+/*New for home page*/
+.home > div {
+	padding: 1rem;
+}
+/*New for home page*/
+.home img {
+	max-width: 100%;
 }
 
-
-.divide-2{
-	width:50%;
-	display: inline-block;
-}
-
-
+/*
 .divide-2 img{
 	width: 100%;
 }
-
+*/
 .alert-success{
 	border: green solid 1px;
 	background-color: green
@@ -203,4 +274,29 @@ li.dropdown {
 
 .faq h4{
 	font-style: italic;
+}
+
+@media(max-width: 1100px){
+	.catalogue-container{
+		display: grid;
+		grid-template-columns: repeat(3,1fr);
+		grid-gap: 1rem;
+		padding: 1rem;
+	}
+}
+@media(max-width: 800px){
+	.catalogue-container{
+		display: grid;
+		grid-template-columns: repeat(2,1fr);
+		grid-gap: 1rem;
+		padding: 1rem;
+	}
+}
+@media(max-width: 600px){
+	.catalogue-container{
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 1rem;
+		padding: 1rem;
+	}
 }
