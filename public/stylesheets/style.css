@@ -28,16 +28,7 @@ label{
 	font-weight: bold;
 }
 
-ul{
-	list-style-type: none;
 
-}
-
-li {
-	display: inline-block;
-}
-/*OLD PERFECTLY WORKING NAVBAR*/
-/*
 ul {
     list-style-type: none;
     margin: 0;
@@ -49,6 +40,10 @@ ul {
 li {
     float: left;
 }
+/*
+    a(href="javascript:void(0)").dropbtn Shop
+	prevents reloading the page if user clicks
+*/
 
 li a, .dropbtn {
     display: inline-block;
@@ -83,7 +78,9 @@ li.dropdown {
     text-align: left;
 }
 
-.dropdown-content a:hover {background-color: rgb(100,100,100);}
+.dropdown-content a:hover {
+	background-color: rgb(100,100,100);
+}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -91,8 +88,8 @@ li.dropdown {
 .right{
 	float: right;
 }
-*/
-/*=================*/
+
+
 
 .mybox{
 	width: 30%;
@@ -291,6 +288,11 @@ li.dropdown {
 		grid-gap: 1rem;
 		padding: 1rem;
 	}
+	.home{
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 1rem;
+	}
 }
 @media(max-width: 600px){
 	.catalogue-container{
@@ -298,5 +300,8 @@ li.dropdown {
 		grid-template-columns: 1fr;
 		grid-gap: 1rem;
 		padding: 1rem;
+	}
+	li a{
+		display: block;
 	}
 }

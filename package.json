@@ -9,6 +9,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "~1.17.1",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
@@ -20,13 +21,6 @@
     "morgan": "~1.8.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "body-parser": "~1.17.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
-    "express": "~4.15.2",
-    "jade": "~1.11.0",
-    "mongoose": "^4.11.13",
-    "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2"
   }
 }

@@ -1,14 +1,11 @@
-doctype html
-html
-  head
-    title Riddhi Fashion
-    meta(charset="utf-8")
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
-  body
-    h1 Riddhi Fashion
-    div.pinktext
-      p Welcome to Riddhi Fashion
-    include ../header/header
-    include productdisplay
-    block content
+extends ../layout
+
+block content
+  div.catalogue-container
+    each product in products
+      div.single-product
+        img(src="#{product.image}" alt="image.jpg")
+        div
+          div.price
+            label $ #{product.price}
+          button(name="add" class="btn-add" onclick="add(\"#{product._id}\")") Add to basket

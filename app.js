@@ -11,6 +11,7 @@ var passport = require('passport');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -36,12 +37,15 @@ app.use(session({
 	secret: 'awesome',
 	resave: true,
 	saveUninitialized: true,
+	store: new MongoStore({ mongooseConnection: mongoose.connection }),
+	cookie: { maxAge: 1 * 2 * 60 * 1000 } /*hours minutes seconds milli*/
 }));
 
 //express message
 app.use(require('connect-flash')());
 app.use(function(req, res, next){
 	res.locals.messages = require('express-messages')(req, res);
+	res.locals.session = req.session;
 	next();
 });
 
