@@ -1,4 +1,25 @@
 extends layout
 
 block content
-	h1 You have no items in your cart
+	if session.cart
+		h1 Shopping Cart
+		div.cart-container
+			label(class="big-title") image
+			label(class="big-title") title
+			label(class="big-title") price
+			label(class="big-title") qty
+		hr
+		each product in products
+			div.cart-container
+				img(src="#{product.item.image}" alt="image.jpg")
+				div.product-change
+					label(class="big-title") #{product.item.title}
+					a(href="#") Delete
+				div.price
+					label $ #{product.item.price}
+				h1 #{product.qty}
+			hr
+		h1 Total Price: #{totalPrice}
+		a(href="/checkout" class="checkout-btn") Checkout
+	else
+		h1 You have no items in your cart

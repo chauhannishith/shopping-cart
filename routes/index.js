@@ -52,13 +52,26 @@ router.get('/add-to-cart/:id', function(req, res, next) {
 		}
 		cart.add(product, product.id);
 		req.session.cart = cart;
-		res.redirect('/all')
+		res.redirect('/'+product.style);
 	});
 });
 
 
 router.get('/cart', function(req, res, next) {
-	res.render('cart');
+	if (!req.session.cart) {
+		return res.render('cart', {products: null});
+	}
+	var cart = new Cart(req.session.cart);
+	res.render('cart',{products: cart.generateArray(), totalPrice: cart.totalPrice});
+	
+});
+
+router.get('/checkout', function(req, res, next) {
+	if (!req.session.cart){
+		return res.render('cart')
+	}
+	var cart = new Cart(req.session.cart);
+	res.render('shops/checkout', {total: cart.totalPrice});
 });
 
 module.exports = router;

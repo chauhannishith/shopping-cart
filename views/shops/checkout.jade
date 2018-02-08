@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+	h1 your total amount due is #{total}
+	form(action="/checkout" method="POST" class="checkout-form")
+		table
+			tr
+				td First name
+				td
+					input(type="text" name="fname")
+			tr
+				td Last name
+				td
+					input(type="text" name="lname")
+			tr
+				td Address Line 1
+				td
+					input(type="text" name="addone")
+			tr
+				td Address Line 2
+				td
+					input(type="text" name="addtwo")
+			tr
+				td Landmark
+				td
+					input(type="text" name="lmark")
+			tr
+				td City
+				td
+					input(type="text" name="city")
+			tr
+				td Pincode
+				td
+					input(type="text" name="pcode")
+			tr
+				td State
+				td
+					input(type="text" name="state")
+			tr
+				td Country
+				td
+					input(type="text" name="count")
+
+

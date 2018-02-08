@@ -5,6 +5,7 @@ block content
     each product in products
       div.single-product
         img(src="#{product.image}" alt="image.jpg")
+        label(class="big-title") #{product.title}
         div
           div.price
             label $ #{product.price}
