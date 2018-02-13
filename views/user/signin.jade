@@ -1,13 +1,20 @@
 extends ../layout
 
 block content
-  div.mybox
-    h2 New user?
-      a(onclick="transfer()", name="signup") SignUp
-    form(action="/users/signin", method="POST", class="myform")
-      label E-mail/Username
-      input(type="text", name="username")
-      label Password
-      input(type="password", name="password")
-      br
-      input(type="submit", name="submit")
+  form(action="/users/signin", method="POST", class="all-form")
+    h2(style="text-align: center") New user?
+      a(onclick="transfer()", name="signup", style="text-align: center, text-decoration: underline") SignUp
+    table
+      tr
+        td E-mail/Username
+      tr
+        td
+          input(type="text", name="username")
+      tr
+        td Password
+      tr
+        td
+          input(type="password", name="password")
+      tr
+        td
+          input(type="submit", name="submit")

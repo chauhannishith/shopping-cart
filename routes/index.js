@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Product = require('../models/product');
 var Cart = require('../models/cart');
+var Order = require('../models/order');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -66,7 +67,7 @@ router.get('/cart', function(req, res, next) {
 	
 });
 
-router.get('/checkout', function(req, res, next) {
+router.get('/checkout', isLoggedIn, function(req, res, next) {
 	if (!req.session.cart){
 		return res.render('cart')
 	}
@@ -74,4 +75,33 @@ router.get('/checkout', function(req, res, next) {
 	res.render('shops/checkout', {total: cart.totalPrice});
 });
 
+/*PAYMENTS HERE as it requires post method*/
+router.post('/checkout', isLoggedIn, function(req, res, next) {
+	var cart = new Cart(req.session.cart);
+	var order = new Order({
+		user: req.user,
+		cart: cart,
+		address: req.body.addone,
+		name: req.body.name,
+		paymentId: 123 //will be given by merchant
+	});
+	order.save(function(err, result){
+		if(err){
+			res.redirect('/',{errors: err});
+		}
+		req.flash('success', 'Order placed successfully');
+		req.session.cart = null;
+		res.redirect('/');
+	});
+});
+
+
 module.exports = router;
+
+function isLoggedIn(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	req.session.oldUrl = req.url;
+	res.redirect('users/signin');
+}

@@ -2,43 +2,41 @@ extends ../layout
 
 block content
 	h1 your total amount due is #{total}
-	form(action="/checkout" method="POST" class="checkout-form")
+	form(action="/checkout" method="POST" class="all-form")
 		table
 			tr
-				td First name
-				td
-					input(type="text" name="fname")
+				td(colspan="2")
+					h2 Card Details
 			tr
-				td Last name
-				td
-					input(type="text" name="lname")
+				td Name
 			tr
-				td Address Line 1
-				td
-					input(type="text" name="addone")
+				td(colspan="2")
+					input(type="text" name="name" required)
 			tr
-				td Address Line 2
-				td
-					input(type="text" name="addtwo")
+				td Address
 			tr
-				td Landmark
-				td
-					input(type="text" name="lmark")
+				td(colspan="2")
+					input(type="text" name="addone" required)
 			tr
-				td City
-				td
-					input(type="text" name="city")
+				td Credit car holder name
 			tr
-				td Pincode
-				td
-					input(type="text" name="pcode")
+				td(colspan="2")
+					input(type="text" name="chname")
 			tr
-				td State
-				td
-					input(type="text" name="state")
+				td Expiration month
+				td Expiration year
 			tr
-				td Country
 				td
+					input(type="text" name="emonth")
+				td
+					input(type="text" name="eyear")
+			tr
+				td CVV/CVC
+			tr
+				td(colspan="2")
 					input(type="text" name="count")
+			tr
+				td(colspan="2")
+					input(type="submit" name="checkout")
 
 

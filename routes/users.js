@@ -52,15 +52,15 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/signup', function(req, res, next) {
+router.get('/signup', notLoggedIn, function(req, res, next) {
   res.render('user/signup');
 });
 
-router.get('/signin', function(req, res, next) {
+router.get('/signin', notLoggedIn, function(req, res, next) {
   res.render('user/signin');
 });
 
-router.post('/signin', function(req, res, next) {
+router.post('/signin', notLoggedIn, function(req, res, next) {
   req.checkBody('username','Email is required').notEmpty();
   req.checkBody('password','Password is required').notEmpty();
 
@@ -70,19 +70,26 @@ router.post('/signin', function(req, res, next) {
   }
   else{
   	passport.authenticate('local', {
-  		successRedirect:'/all',
   		failureRedirect:'/users/signin',
   		failureFlash: true
-  	})(req, res, next);
+  	}),function(req, res, next){
+  		if(req.session.oldUrl){
+  			res.redirect(req.session.oldUrl);
+  			req.session.oldUrl = null;
+  		}
+  	};
   }
 });
 
-router.get('/myprofile', function(req, res, next) {
+router.get('/myprofile', isLoggedIn, function(req, res, next) {
   var user = req.user;
-  res.render('user/myprofile',{user: user});
+  if(user)
+  	res.render('user/myprofile',{user: user});
+  else
+  	res.render('user/signin');
 });
 
-router.post('/signup', function(req, res){
+router.post('/signup', notLoggedIn, function(req, res){
 //	req.checkBody('Name', 'Name is required').notEmpty();
   req.checkBody('username','User name is required').notEmpty();
   req.checkBody('email','Email is required').notEmpty();
@@ -129,10 +136,24 @@ router.post('/signup', function(req, res){
 	}
 });
 
-router.get('/logout', function(req, res, next) {
+router.get('/logout', isLoggedIn, function(req, res, next) {
   req.logout();
   req.flash('success', 'You are logged out');
   res.redirect('/users/signin');
 });
 
 module.exports = router;
+
+function isLoggedIn(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	res.redirect('/users/signin');
+}
+
+function notLoggedIn(req, res, next){
+	if(!req.isAuthenticated()){
+		return next();
+	}
+	res.redirect('/');
+}
