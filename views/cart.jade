@@ -11,10 +11,10 @@ block content
 		hr
 		each product in products
 			div.cart-container
-				img(src="#{product.item.image}" alt="image.jpg")
+				img(src="../#{product.item.image}" alt="image.jpg")
 				div.product-change
 					label(class="big-title") #{product.item.title}
-					a(href="#") Delete
+					a(href="/delete/#{product.item._id}") Delete
 				div.price
 					label $ #{product.item.price}
 				h1 #{product.qty}

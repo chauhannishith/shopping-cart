@@ -38,7 +38,7 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true,
 	store: new MongoStore({ mongooseConnection: mongoose.connection }),
-	cookie: { maxAge: 1 * 60 * 60 * 1000 } /*hours minutes seconds milli*/
+	cookie: { maxAge: 1 * 2 * 60 * 1000 } /*hours minutes seconds milli*/
 }));
 
 //express message

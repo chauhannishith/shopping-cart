@@ -15,9 +15,9 @@ ul
       i(class="fa fa-shopping-bag" aria-hidden="true")
       |   Shopping cart  
       if session.cart
-        | #{session.cart.totalQty}
+        span.badge #{session.cart.totalQty}
       else
-        | 0 
+        span.badge 0 
     if user
       li.dropdown
         a(href="javascript:void(0)").dropbtn Your Account

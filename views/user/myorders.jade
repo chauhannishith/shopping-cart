@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+	h2 My orders
+	hr
+	each order in orders
+		h2 address: #{order.address}
+		h2 name: #{order.name}
+		h2 total qty: #{order.cart.totalQty}
+		h2 total price: #{order.cart.totalPrice}
+		each item in order.cart.items
+			h2 title: #{item.item.title},  qty: #{item.qty}, price: #{item.item.price}
+		hr

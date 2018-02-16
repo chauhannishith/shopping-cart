@@ -10,6 +10,9 @@ router.get('/', function(req, res, next) {
 });
 
 
+router.get('/contact', function(req, res, next) {
+  res.render('contact', { title: 'Riddhi Fashion' });
+});
 
 router.get('/faq', function(req, res, next) {
   res.render('faq', { title: 'Riddhi Fashion' });
@@ -23,23 +26,37 @@ router.get('/all', function(req, res, next) {
 	var products = Product.find(function(err, docs){
 		res.render('shops/shop',{ title: 'Riddhi Fashion', products: docs });
 	});
+	req.session.oldUrl = req.url;
 });
 
 router.get('/gown', function(req, res, next) {
 	var products = Product.find({style: "gown"},function(err, docs){
 		res.render('shops/shop',{ title: 'Riddhi Fashion', products: docs });
 	});
+	req.session.oldUrl = req.url;
 });
 
 router.get('/kurti', function(req, res, next) {
 	var products = Product.find({style: "kurti"},function(err, docs){
 		res.render('shops/shop',{ title: 'Riddhi Fashion', products: docs });
 	});
+	req.session.oldUrl = req.url;
 });
 
 router.get('/anarkali', function(req, res, next) {
 	var products = Product.find({style: "anarkali"},function(err, docs){
 		res.render('shops/shop',{ title: 'Riddhi Fashion', products: docs });
+	});
+	req.session.oldUrl = req.url;
+});
+
+router.get('/product-detail/:id', function(req, res, next) {
+	var productId = req.params.id;
+	Product.findById(productId, function(err, data){
+		if(err) {
+			return res.redirect('/all');
+		}
+		res.render('shops/productdisplay', {product: data});
 	});
 });
 
@@ -49,11 +66,15 @@ router.get('/add-to-cart/:id', function(req, res, next) {
 
 	Product.findById(productId, function(err, product){
 		if(err) {
+			req.flash('danger', 'Some error occured,Sorry :(');
 			return res.redirect('/all');
 		}
 		cart.add(product, product.id);
 		req.session.cart = cart;
-		res.redirect('/'+product.style);
+		req.flash('success', 'Product added successfully');
+		res.redirect(req.session.oldUrl);
+		req.session.oldUrl = null;
+//		res.redirect('/'+product.style);
 	});
 });
 
@@ -64,7 +85,36 @@ router.get('/cart', function(req, res, next) {
 	}
 	var cart = new Cart(req.session.cart);
 	res.render('cart',{products: cart.generateArray(), totalPrice: cart.totalPrice});
-	
+});
+
+router.get('/delete/:id', function(req, res, next){
+	var productId = req.params.id;
+	if (!req.session.cart) {
+		console.log("5");
+		return res.render('cart', {products: null});
+	}
+//	var cart = new Cart(req.session.cart ? req.session.cart : {});
+	var cart = new Cart(req.session.cart);
+	Product.findById(productId, function(err, product){
+		if(err) {
+//			console.log("1");
+			req.flash('danger', 'Some error occured,Sorry :(');
+			return res.redirect('/all');
+		}
+//		cart.delete(product, product.id);
+//		req.flash('success', 'Product removed successfully');
+		if (cart.delete(product, product.id) !== null) {
+//			console.log("2");
+			req.flash('success', 'Product removed successfully');
+			req.session.cart = cart;
+			return res.render('cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+		}
+		else{
+//			console.log("6");
+			req.session.cart = null;
+			return res.render('cart', {products: null});
+		} 
+	});
 });
 
 router.get('/checkout', isLoggedIn, function(req, res, next) {
@@ -72,12 +122,13 @@ router.get('/checkout', isLoggedIn, function(req, res, next) {
 		return res.render('cart')
 	}
 	var cart = new Cart(req.session.cart);
+
 	res.render('shops/checkout', {total: cart.totalPrice});
 });
 
 /*PAYMENTS HERE as it requires post method*/
 router.post('/checkout', isLoggedIn, function(req, res, next) {
-	var cart = new Cart(req.session.cart);
+	var cart = new Cart(req.session.cart);	
 	var order = new Order({
 		user: req.user,
 		cart: cart,
@@ -91,7 +142,7 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
 		}
 		req.flash('success', 'Order placed successfully');
 		req.session.cart = null;
-		res.redirect('/');
+		res.redirect('cart');
 	});
 });
 

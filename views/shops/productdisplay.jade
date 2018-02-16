@@ -1,8 +1,11 @@
-div.catalogue-container
-  each product in products
-    div.single-product
-      img(src="#{product.image}" alt="image.jpg")
-      div
-        div.price
-          label $ #{product.price}
-        button(name="add" class="btn-add" onclick="add(#{product._id})") Add to basket
+extends ../layout
+
+block content
+	div.product-detail
+		img(src="../#{product.image}" alt="image.jpg")
+		div.detail-info
+			h2 #{product.title}
+			h4 #{product.description}
+			div.col-1-2
+				h2 #{product.price}
+				button(name="add" class="btn-add" onclick="add(\"#{product._id}\")") Add to basket

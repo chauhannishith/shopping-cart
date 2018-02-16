@@ -4,6 +4,8 @@ var router = express.Router();
 var User = require('../models/userdata');
 var bcrypt = require('bcryptjs');
 var passport = require('passport');
+var Cart = require('../models/cart');
+var Order = require('../models/order');
 
 //
 var app = express();
@@ -60,27 +62,64 @@ router.get('/signin', notLoggedIn, function(req, res, next) {
   res.render('user/signin');
 });
 
-router.post('/signin', notLoggedIn, function(req, res, next) {
+/*TRY TO BRING BACK TO URL FROM WHICH CALL WAS MADE*/
+router.post('/signin', passport.authenticate('local', {
+	failureRedirect: '/users/signin',
+	failureFlash: true
+}), function (req, res, next) {
+	user = req.user;
+	if(req.session.oldUrl){
+		res.redirect(req.session.oldUrl, {user: user});
+		req.session.oldUrl = null;
+	}
+	else{
+		res.render('user/myprofile', {user: user});
+	}
+});
+/*
+router.post('/signin', function(req, res, next) {
   req.checkBody('username','Email is required').notEmpty();
   req.checkBody('password','Password is required').notEmpty();
 
   var errors = req.validationErrors();
   if(errors){
+  	console.log(errors);
   	res.render('user/signin', {errors: errors});
   }
   else{
   	passport.authenticate('local', {
   		failureRedirect:'/users/signin',
   		failureFlash: true
-  	}),function(req, res, next){
-  		if(req.session.oldUrl){
-  			res.redirect(req.session.oldUrl);
-  			req.session.oldUrl = null;
-  		}
+  	}), function(req, res, next){
+  			if(req.session.oldUrl){
+				res.redirect(req.session.oldUrl);
+				req.session.oldUrl = null;
+			}
+			else{
+				res.render('user/myprofile');
+			}
   	};
   }
-});
+});*/
+/* Perfectly working
+router.post('/signin', function(req, res, next) {
+  req.checkBody('username','Email is required').notEmpty();
+  req.checkBody('password','Password is required').notEmpty();
 
+  var errors = req.validationErrors();
+  if(errors){
+  	console.log(errors);
+  	res.render('user/signin', {errors: errors});
+  }
+  else{
+  	passport.authenticate('local', {
+  		successRedirect: '/all',
+  		failureRedirect:'/users/signin',
+  		failureFlash: true
+  	})(req, res, next);
+  }
+});
+*/
 router.get('/myprofile', isLoggedIn, function(req, res, next) {
   var user = req.user;
   if(user)
@@ -89,6 +128,20 @@ router.get('/myprofile', isLoggedIn, function(req, res, next) {
   	res.render('user/signin');
 });
 
+router.get('/myorders', isLoggedIn, function(req, res, next) {
+	Order.find({user: req.user}, function(err, orders){
+		if (err){
+			return res.write("fetch failed");
+		}
+		var cart;
+		orders.forEach(function(order){
+			cart = new Cart(order.cart);
+			order.items = cart.generateArray();
+		});
+		res.render('user/myorders', {orders: orders});		
+	});
+  
+});
 router.post('/signup', notLoggedIn, function(req, res){
 //	req.checkBody('Name', 'Name is required').notEmpty();
   req.checkBody('username','User name is required').notEmpty();

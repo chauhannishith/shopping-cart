@@ -152,6 +152,38 @@ li.dropdown {
 	height: 25%;
 	display: block;
 }
+
+/*NEW FORM LAYOUT*/
+.all-form{
+	position: relative;
+	top: 50px;
+}
+.all-form table{
+	margin: auto;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 10px;
+}
+.all-form table td{
+	padding: 5px;
+	font-weight: bold;
+}
+.all-form a:hover{
+	text-decoration: underline;
+}
+.all-form input[type="submit"]{
+	margin-top: 15px;
+	padding: 10px;
+}
+
+/*BADGE FOR SHOPPING*/
+.badge{
+	border: 1px solid white;
+	border-radius: 10px;
+	background-color: white;
+	color: black;
+	padding: 1px 5px;
+}
 /*Cart dispaly New*/
 .cart-container{
 	display: grid;
@@ -180,27 +212,6 @@ li.dropdown {
 	margin: auto;
 }
 
-.all-form{
-	position: relative;
-	top: 50px;
-}
-.all-form table{
-	margin: auto;
-	border: 1px solid black;
-	border-radius: 3px;
-	padding: 10px;
-}
-.all-form table td{
-	padding: 5px;
-	font-weight: bold;
-}
-.all-form a:hover{
-	text-decoration: underline;
-}
-.all-form input[type="submit"]{
-	margin-top: 15px;
-	padding: 10px;
-}
 /*
 .col-1{
 	width:25%;
@@ -249,7 +260,7 @@ li.dropdown {
 .catalogue-container{
 	display: grid;
 	grid-template-columns: repeat(4,1fr);
-	grid-gap: 0;/*1rem;*/
+	grid-gap: 0.5rem;/*1rem;*/
 	padding: 1rem;
 }
 /*New for shop page single product outline*/
@@ -258,7 +269,7 @@ li.dropdown {
 	grid-template-rows: 4fr 1fr 1fr;
 	grid-gap: 0.3rem;
 	border: 1px solid black;
-	border-radius: 3px;
+	border-radius: 1px;
 	margin: auto;
 	padding: 0.6rem;
 	box-shadow: var(--shadow);
@@ -268,7 +279,7 @@ li.dropdown {
 	display: grid;
 	grid-template-columns: 1fr 2fr;
 }
-.catalogue-container .single-product > img{
+.catalogue-container .single-product > a img{
 	max-width: 100%;
 	margin: auto;
 }
@@ -307,6 +318,35 @@ li.dropdown {
 	max-width: 100%;
 }
 
+/*Product detail display*/
+.product-detail{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1rem;
+}
+
+.product-detail img{
+	border: 1px solid red;
+	margin: auto;
+	width: 80%;
+}
+
+.product-detail .detail-info{
+	display: grid;
+	grid-template-rows: 1fr 3fr 1fr;
+	grid-gap: 0.5rem;
+}
+.product-detail .detail-info .col-1-2{
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
+.product-detail .detail-info .btn-add{
+	display: block;
+	text-align: center;
+	background-color: #f0c14b;
+	border-radius: 5px;
+	font-size: 20px;
+}
 /*
 .divide-2 img{
 	width: 100%;
