@@ -17,7 +17,10 @@ block content
 					a(href="/delete/#{product.item._id}") Delete
 				div.price
 					label $ #{product.item.price}
-				h1 #{product.qty}
+				div.qty
+					button(onclick="location.href=\'/reduce/#{product.item._id}\'") -
+					h3 #{product.qty}
+					button(onclick="location.href=\'/increase/#{product.item._id}\'") +
 			hr
 		h1 Total Price: #{totalPrice}
 		a(href="/checkout" class="checkout-btn") Checkout

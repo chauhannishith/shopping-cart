@@ -197,6 +197,19 @@ li.dropdown {
 	grid-template-rows: 3fr 1fr;
 }
 
+.cart-container .qty{
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+}
+.cart-container .qty button{
+	height: 50%;
+	width: 100%;
+	margin: auto;
+}
+.cart-container .qty h3{
+	text-align: center;
+}
+
 .cart-container > img {
 	max-width: 100%;
 	height: 100%;

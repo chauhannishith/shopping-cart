@@ -117,6 +117,29 @@ router.get('/delete/:id', function(req, res, next){
 	});
 });
 
+
+router.get('/reduce/:id', function(req, res, next) {
+	var productId = req.params.id;
+	var cart = new Cart(req.session.cart ? req.session.cart : {});
+	if(cart.reduceByone(productId) !== null ){
+		req.session.cart = cart;
+		res.render('cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+	}
+	else{
+		req.session.cart = null;
+		res.render('cart', {products: null});
+
+	}
+});
+
+router.get('/increase/:id', function(req, res, next) {
+	var productId = req.params.id;
+	var cart = new Cart(req.session.cart ? req.session.cart : {});
+	cart.increaseByone(productId);
+	req.session.cart = cart;
+	res.render('cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+});
+
 router.get('/checkout', isLoggedIn, function(req, res, next) {
 	if (!req.session.cart){
 		return res.render('cart')
