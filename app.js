@@ -15,11 +15,12 @@ var MongoStore = require('connect-mongo')(session);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var seller = require('./routes/seller');
 
 var app = express();
 
-mongoose.connect('localhost:27017/shopping');
-
+//mongoose.connect('localhost:27017/shopping');
+var promise = mongoose.connect('mongodb://localhost:27017/shopping', {useMongoClient: true});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -71,11 +72,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.get('*', function(req, res, next) {
 	res.locals.user = req.user || null;
+//	res.locals.seller = req.seller || null; //not so sure about this implementation *passport only sets req.user
 	next();
 });
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/seller', seller);
 app.use('/users', users);
 app.use('/', index);
 

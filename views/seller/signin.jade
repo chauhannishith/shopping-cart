@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  form(action="/seller/signin", method="POST", class="all-form")
+    h2(style="text-align: center") New user?
+      a(onclick="transferSeller()", name="signup", style="text-align: center, text-decoration: underline") SignUp
+    table
+      tr
+        td E-mail/Username
+      tr
+        td
+          input(type="text", name="username")
+      tr
+        td Password
+      tr
+        td
+          input(type="password", name="password")
+      tr
+        td
+          input(type="submit", name="submit")

@@ -67,7 +67,7 @@ router.post('/signin', passport.authenticate('local', {
 	failureRedirect: '/users/signin',
 	failureFlash: true
 }), function (req, res, next) {
-	user = req.user;
+	var user = req.user;
 	if(req.session.oldUrl){
 		res.redirect(req.session.oldUrl, {user: user});
 		req.session.oldUrl = null;
@@ -142,6 +142,7 @@ router.get('/myorders', isLoggedIn, function(req, res, next) {
 	});
   
 });
+
 router.post('/signup', notLoggedIn, function(req, res){
 //	req.checkBody('Name', 'Name is required').notEmpty();
   req.checkBody('username','User name is required').notEmpty();
@@ -181,7 +182,7 @@ router.post('/signup', notLoggedIn, function(req, res){
 				}
 				else{
 					req.flash('success','You can now sign in');
-					res.redirect('/users/signin');
+					res.render('/users/signin');
 				}
 			});
 		});

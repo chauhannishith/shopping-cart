@@ -142,7 +142,7 @@ router.get('/increase/:id', function(req, res, next) {
 
 router.get('/checkout', isLoggedIn, function(req, res, next) {
 	if (!req.session.cart){
-		return res.render('cart')
+		return res.render('cart');
 	}
 	var cart = new Cart(req.session.cart);
 

@@ -6,10 +6,10 @@ block content
 	each order in orders
 		h2 address: #{order.address}
 		h2 name: #{order.name}
-		h2 date: #{order.date}
+		h2 name: #{order.date}
 		h2 total qty: #{order.cart.totalQty}
 		h2 total price: #{order.cart.totalPrice}
-		h2 status: #{order.status}
+		h2 name: #{order.status}
 		each item in order.cart.items
 			h2 title: #{item.item.title},  qty: #{item.qty}, price: #{item.item.price}
 		hr

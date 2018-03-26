@@ -4,7 +4,7 @@ block content
   div.catalogue-container
     each product in products
       div.single-product
-        a(href="/product-detail/#{product._id}")
+        a(href="/product-detail/#{product._id}" target="_blank")
           img(src="#{product.image}" alt="image.jpg")
         label(class="big-title") #{product.title}
         div
